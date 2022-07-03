@@ -14,7 +14,7 @@ public class CreateStudentDemo {
                 .buildSessionFactory();
         Session session = factory.getCurrentSession();
         try {
-            Student student = new Student("Lebron", "James", "lebronjames@gmail.com");
+            Student student = new Student("Max", "Verstappen", "maxverstappen@gmail.com");
             System.out.println("Creating a new object");
             session.beginTransaction();
             System.out.println("Saving the student...");
