@@ -1,4 +1,4 @@
-package com.anilduyguc.jdbc;
+package com.anilduyguc.jdbc.student;
 
 import com.anilduyguc.jdbc.entitiy.Student;
 import org.hibernate.Session;
@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class DeleteStudentDemo {
+public class UpdateStudentDemo {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -17,15 +17,19 @@ public class DeleteStudentDemo {
             Long studentId = Long.valueOf(3);
             session = factory.getCurrentSession();
             session.beginTransaction();
-
-            /*Student student = session.get(Student.class, studentId);
-            System.out.println("Deleting a student with Id: " +studentId);
-            session.delete(student);*/
-
-            session.createQuery("delete from Student where id=5").executeUpdate();
-
+            System.out.println("Getting student with Id: " + studentId);
+            Student student = session.get(Student.class, studentId);
+            System.out.println("Updating student");
+            student.setFirstName("Arthur");
+            System.out.println(student);
             session.getTransaction().commit();
-            System.out.println("Done!");
+
+            System.out.println("Updating email all students");
+
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+            session.createQuery("update Student set email='foo.gmail.com'").executeUpdate();
+            session.getTransaction().commit();
 
         } catch (Exception e) {
             e.printStackTrace();

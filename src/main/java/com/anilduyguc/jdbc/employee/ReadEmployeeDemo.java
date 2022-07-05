@@ -1,33 +1,33 @@
-package com.anilduyguc.jdbc;
+package com.anilduyguc.jdbc.employee;
 
+import com.anilduyguc.jdbc.entitiy.Employee;
 import com.anilduyguc.jdbc.entitiy.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-
-public class ReadStudentDemo {
+public class ReadEmployeeDemo {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Employee.class)
                 .buildSessionFactory();
         Session session = factory.getCurrentSession();
         try {
-            Student student = new Student("Charles", "Leclerc", "charleclerc@gmail.com");
+            Employee employee  = new Employee("Jost", "Capito", "Williams Mercedes Formula 1 Team");
             System.out.println("Creating a new object");
             session.beginTransaction();
-            System.out.println("Saving the student...");
-            System.out.println(student);
-            session.save(student);
+            System.out.println("Saving the employee...");
+            System.out.println(employee);
+            session.save(employee);
             session.getTransaction().commit();
-            System.out.println("Student added. Generated Id: " + student.getId() + ". Done!");
+            System.out.println("Employee added. Generated Id: " + employee.getId() + ". Done!");
 
             session = factory.getCurrentSession();
             session.beginTransaction();
-            System.out.println("\nGetting student with Id: " + student.getId());
-            Student getStudent = session.get(Student.class, student.getId());
-            System.out.println("Getting completed. " + getStudent);
+            System.out.println("\nGetting employee with Id: " + employee.getId());
+            Employee getEmployee = session.get(Employee.class, employee.getId());
+            System.out.println("Getting completed. " + getEmployee);
             session.getTransaction().commit();
             System.out.println("Done!");
 

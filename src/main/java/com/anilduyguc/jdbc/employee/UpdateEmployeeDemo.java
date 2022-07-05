@@ -1,4 +1,4 @@
-package com.anilduyguc.jdbc;
+package com.anilduyguc.jdbc.employee;
 
 import com.anilduyguc.jdbc.entitiy.Employee;
 import org.hibernate.Session;
