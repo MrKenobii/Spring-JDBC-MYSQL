@@ -1,8 +1,13 @@
-package com.anilduyguc.eagervslazy.entity;
+package com.anilduyguc.univ2.entity;
 
-import com.anilduyguc.uni.entity.Instructor;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "instructor_detail")
@@ -24,8 +29,7 @@ public class InstructorDetail {
             CascadeType.MERGE,
             CascadeType.PERSIST,
             CascadeType.REFRESH }) // mappedBy should match the fieldName of given class
-
-    private com.anilduyguc.uni.entity.Instructor instructor;
+    private Instructor instructor;
 
 
     public InstructorDetail() {}
@@ -59,7 +63,7 @@ public class InstructorDetail {
         this.hobby = hobby;
     }
 
-    public com.anilduyguc.uni.entity.Instructor getInstructor() {
+    public Instructor getInstructor() {
         return instructor;
     }
 
